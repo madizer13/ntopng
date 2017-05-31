@@ -60,7 +60,7 @@ if(page == nil) then
    end
 end
 
-
+-- Tabbed header will be getting rid of, all content bought onto one page
 if((ifstats ~= nil) and (ifstats.stats.packets > 0)) then
 -- Print tabbed header
 
@@ -89,15 +89,69 @@ if((ifstats ~= nil) and (ifstats.stats.packets > 0)) then
       print('<li'..active..'><a href="'..ntop.getHttpPrefix()..'/?page=TopFlowSenders">Senders</a></li>\n')
    end
 
+-- End tabbed header section
+
+--###########################################################
+--Starting section for TopFlowTalkers
+
    print('</ul>\n\t</div>\n\t</nav>\n')
 
    if(page == "TopFlowTalkers") then
-      print('<div style="text-align: center;">\n<h4>Top Flow Talkers</h4></div>\n')
+      print('<div style="text-align: center;">\n<h3>Summary Report</h3></div>\n')
+      print('<div style="text-align: center;">\n<h5>Welcome to the summary report page we have modified in ntopng so that the user can see application and device information in one easy to navigate view</h5></div>\n')
 
       print('<div class="row" style="text-align: center;">')
-      dofile(dirs.installdir .. "/scripts/lua/inc/sankey.lua")
-      print('\n</div><br/><br/><br/>\n')
+      dofile(dirs.installdir .. "/scripts/lua/inc/sankey.lua") --Sankey holds flow charts
+      
+    print('\n</div><br/><br/><br/>\n')
 
+--##########################################################
+--Adding in code for TopHosts
+    print [[
+ 
+        <h4>Top Hosts (Send+Receive)</h4>
+        <div class="pie-chart" id="topHosts"></div>
+        <span class="help-block" style="color: #dddddd;">Click on the host for more information.</span>
+        <script type='text/javascript'>
+            window.onload=function() {
+            var refresh = 3000 /* ms */;
+            do_pie("#topHosts", '@HTTP_PREFIX@/lua/iface_hosts_list.lua', {  }, "", refresh);
+            }
+        --</script>
+    ]]
+
+--############################################################################
+-- Adding in TopPorts
+    print [[
+        <table border=0>
+        <tr><td>
+        <h4>Top Client Ports</h4>
+        <div class="pie-chart" id="topClientPorts"></div>
+        <span class="help-block" style="color: #dddddd;">Click on the port for more information.</span>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+        <h4>Top Server Ports</h4>
+        <div class="pie-chart" id="topServerPorts"></div>
+        <span class="help-block" style="color: #dddddd;">Click on the port for more information.</span>
+        </td></tr>
+        </table>
+
+        <script type='text/javascript'>
+
+        window.onload=function() {
+            var refresh = 3000 /* ms */;
+            do_pie("#topClientPorts", '@HTTP_PREFIX@/lua/iface_ports_list.lua', { clisrv: "client" }, "", refresh);
+            do_pie("#topServerPorts", '@HTTP_PREFIX@/lua/iface_ports_list.lua', { clisrv: "server" }, "", refresh);
+        }
+
+        </script>
+    ]]
+
+
+
+--#############################################################################
+-- Refresh Rates and Footer
 print [[
 <div class="control-group" style="text-align: center;">
 &nbsp;Refresh frequency: <div class="btn-group btn-small">
@@ -179,14 +233,20 @@ print [[
         });
 
       </script>
-
       ]]
+
+
+
+--######################################################################
+--else if not TopFlowTalkers then open index to the active page
+
    else
       ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/index_" .. page .. ".inc")
    end
 
+--#######################################################################
 
-  --ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/index_top.inc")
+  -- ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/index_top.inc")
   -- ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/index_bottom.inc")
 else
    print("<div class=\"alert alert-warning\">No packet has been received yet on interface " .. getHumanReadableInterfaceName(ifname) .. ".<p>Please wait <span id='countdown'></span> seconds until this page reloads.</div> <script type=\"text/JavaScript\">(function countdown(remaining) { if(remaining <= 0) location.reload(true); document.getElementById('countdown').innerHTML = remaining;  setTimeout(function(){ countdown(remaining - 1); }, 1000);})(10);</script>")
