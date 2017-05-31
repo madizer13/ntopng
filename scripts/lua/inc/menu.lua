@@ -52,7 +52,9 @@ print [[/lua/runtime.lua"><i class="fa fa-hourglass-start"></i> Runtime Status</
 </ul>
 ]]
 
--- ##############################################
+-- ##############################################################
+-- This section is for the dashboard view which we are changing
+-- to the summary report, the pro version has not been changed (isPro)
 
 if interface.isPcapDumpInterface() == false then
    if(active_page == "dashboard") then
@@ -73,10 +75,10 @@ print(ntop.getHttpPrefix())
 if ntop.isPro() then
    print("/lua/pro/dashboard.lua")
 else
-   print("/lua/index.lua")
+   print("/lua/index.lua") -- index.lua has been edited to have all the summary content (i.e. Top Scripts)
 end
 
-print [["><i class="fa fa-dashboard"></i> Traffic Dashboard</a></li>]]
+print [["><i class="fa fa-dashboard"></i> Summary Report</a></li>]]
 
 if(ntop.isPro()) then
 	print('<li><a href="'..ntop.getHttpPrefix()..'/lua/pro/report.lua"><i class="fa fa-area-chart"></i> Traffic Report</a></li>')
@@ -93,7 +95,7 @@ print [[
    ]]
 end
 
-
+-- End the section for the dashboard/summary report
 -- ##############################################
 
 interface.select(ifname)
