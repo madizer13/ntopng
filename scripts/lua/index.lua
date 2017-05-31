@@ -108,16 +108,14 @@ if((ifstats ~= nil) and (ifstats.stats.packets > 0)) then
 --##########################################################
 --Adding in code for TopHosts
     print [[
- 
         <h4>Top Hosts (Send+Receive)</h4>
         <div class="pie-chart" id="topHosts"></div>
         <span class="help-block" style="color: #dddddd;">Click on the host for more information.</span>
+        
         <script type='text/javascript'>
-            window.onload=function() {
             var refresh = 3000 /* ms */;
-            do_pie("#topHosts", '@HTTP_PREFIX@/lua/iface_hosts_list.lua', {  }, "", refresh);
-            }
-        --</script>
+            do_pie("#topHosts", '/lua/iface_hosts_list.lua', {  }, "", refresh);
+        </script>
     ]]
 
 --############################################################################
@@ -138,17 +136,49 @@ if((ifstats ~= nil) and (ifstats.stats.packets > 0)) then
         </table>
 
         <script type='text/javascript'>
-
-        window.onload=function() {
             var refresh = 3000 /* ms */;
-            do_pie("#topClientPorts", '@HTTP_PREFIX@/lua/iface_ports_list.lua', { clisrv: "client" }, "", refresh);
-            do_pie("#topServerPorts", '@HTTP_PREFIX@/lua/iface_ports_list.lua', { clisrv: "server" }, "", refresh);
-        }
-
+            do_pie("#topClientPorts", '/lua/iface_ports_list.lua', { clisrv: "client" }, "", refresh);
+            do_pie("#topServerPorts", '/lua/iface_ports_list.lua', { clisrv: "server" }, "", refresh);
         </script>
     ]]
 
+--#############################################################################
+-- Adding in TopApplications
+    print [[
+        <h4>Top Application Protocols</h4>
+        <div class="pie-chart" id="topApplicationProtocols"></div>
+        <span class="help-block" style="color: #dddddd;">Click on the application for more information.</span>
+        
+        <script type='text/javascript'>
+            var refresh = 3000 /* ms */;
+            do_pie("#topApplicationProtocols", '/lua/iface_ndpi_stats.lua', {  }, "", refresh);
+        </script>
+    ]]
 
+--#############################################################################
+-- Adding in TopASNs
+    print [[
+        <h4>Top Talker ASNs</h4>
+        <div class="pie-chart" id="topASN"></div>
+
+        <script type='text/javascript'>
+            var refresh = 3000 /* ms */;
+            do_pie("#topASN", '/lua/top_generic.lua?module=top_asn', { senders_receivers : "senders" }, "", refresh);
+        </script>
+    ]]
+
+--#############################################################################
+--Adding in TopFlowSenders
+    print [[
+        <h4>Top Flow Talkers: Live</h4>
+	<div class="pie-chart" id="topSenders"></div>
+        <span class="help-block" style="color: #dddddd;">Click on the host for more information.</span>
+        
+        <script type='text/javascript'>
+            var refresh = 3000 /* ms */;
+            do_pie("#topSenders", '/lua/top_generic.lua?module=top_talkers', { senders_receivers : "senders" }, "", refresh);
+        </script>
+    ]]
 
 --#############################################################################
 -- Refresh Rates and Footer
