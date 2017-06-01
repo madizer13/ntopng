@@ -23,6 +23,7 @@ end
 
 sendHTTPContentTypeHeader('text/html')
 
+-- The header file for the web GUI is dumped here
 ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/header.inc")
 
 -- NOTE: in the home page, footer.lua checks the ntopng version
@@ -49,8 +50,7 @@ end
 -- Default frequency (ms)
 if (refresh == '') then refresh = 5000 end
 
---
-
+--Possibly redundant code
 page = _GET["page"]
 if(page == nil) then
    if(not(is_loopback)) then
@@ -60,36 +60,8 @@ if(page == nil) then
    end
 end
 
--- Tabbed header will be getting rid of, all content bought onto one page
-if((ifstats ~= nil) and (ifstats.stats.packets > 0)) then
--- Print tabbed header
-
-   print('<nav class="navbar navbar-default" role="navigation">\n\t<div class="navbar-collapse collapse">\n\t<ul class="nav navbar-nav">\n')
-
-   print('<li><a href="#">Dashboard: </a></li>\n')
-
-   if(not(is_loopback)) then
-      if(page == "TopFlowTalkers") then active=' class="active"' else active = "" end
-      print('<li'..active..'><a href="'..ntop.getHttpPrefix()..'/?page=TopFlowTalkers">Talkers</a></li>\n')
-   end
-
-   if((page == "TopHosts")) then active=' class="active"' else active = "" end
-   print('<li'..active..'><a href="'..ntop.getHttpPrefix()..'/?page=TopHosts">Hosts</a></li>\n')
-
-   if((page == "TopPorts")) then active=' class="active"' else active = "" end
-   print('<li'..active..'><a href="'..ntop.getHttpPrefix()..'/?page=TopPorts">Ports</a></li>\n')
-
-   if((page == "TopApplications")) then active=' class="active"' else active = "" end
-   print('<li'..active..'><a href="'..ntop.getHttpPrefix()..'/?page=TopApplications">Applications</a></li>\n')
-
-   if(not(is_loopback)) then
-      if((page == "TopASNs")) then active=' class="active"' else active = "" end
-      print('<li'..active..'><a href="'..ntop.getHttpPrefix()..'/?page=TopASNs">ASNs</a></li>\n')
-      if((page == "TopFlowSenders")) then active=' class="active"' else active = "" end
-      print('<li'..active..'><a href="'..ntop.getHttpPrefix()..'/?page=TopFlowSenders">Senders</a></li>\n')
-   end
-
--- End tabbed header section
+print('<div style="text-align: center;">\n<h3>Summary Report</h3></div>\n')
+print('<div style="text-align: center;">\n<h5>Welcome to the summary report page we have modified in ntopng so that the user can see application and device information in one easy to navigate view</h5></div>\n')
 
 --###########################################################
 --Starting section for TopFlowTalkers
@@ -97,11 +69,10 @@ if((ifstats ~= nil) and (ifstats.stats.packets > 0)) then
    print('</ul>\n\t</div>\n\t</nav>\n')
 
    if(page == "TopFlowTalkers") then
-      print('<div style="text-align: center;">\n<h3>Summary Report</h3></div>\n')
-      print('<div style="text-align: center;">\n<h5>Welcome to the summary report page we have modified in ntopng so that the user can see application and device information in one easy to navigate view</h5></div>\n')
+      print('<div style="text-align: left;">\n<h4>Top Flows</h4></div>\n')
 
       print('<div class="row" style="text-align: center;">')
-      dofile(dirs.installdir .. "/scripts/lua/inc/sankey.lua") --Sankey holds flow charts
+      dofile(dirs.installdir .. "/scripts/lua/inc/sankey.lua") -- sankey.lua holds flow charts
       
     print('\n</div><br/><br/><br/>\n')
 
@@ -270,9 +241,9 @@ print [[
 --######################################################################
 --else if not TopFlowTalkers then open index to the active page
 
-   else
-      ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/index_" .. page .. ".inc")
-   end
+   --else
+      --ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/index_" .. page .. ".inc")
+   --end
 
 --#######################################################################
 
