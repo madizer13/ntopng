@@ -6,57 +6,55 @@ _ifstats = interface.getStats()
 
 print [[
 
-<div id = "alert_placeholder"></div>
+    <div id = "alert_placeholder"></div>
 
-<style>
+    <style>
 
-.node rect {
-  cursor: move;
-  fill-opacity: .9;
-  shape-rendering: crispEdges;
-}
+    .node rect {
+        cursor: move;
+        fill-opacity: .9;
+        shape-rendering: crispEdges;
+    }
 
-.node text {
-  pointer-events: none;
-  text-shadow: 0 1px 0 #fff;
-}
+    .node text {
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff;
+    }
 
-.link {
-  fill: none;
-  stroke: #000;
-  stroke-opacity: .2;
-}
+    .link {
+        fill: none;
+        stroke: #000;
+        stroke-opacity: .2;
+    }
 
-.link:hover {
-  stroke-opacity: .5;
-}
+    .link:hover {
+        stroke-opacity: .5;
+    }
 
-</style>
+    </style>
 
-<div id="chart" style="margin-left: auto; margin-right: auto;"></div>
-<script src="]] print(ntop.getHttpPrefix()) print[[/js/sankey.js"></script>
+    <div id="chart" style="margin-left: auto; margin-right: auto;"></div>
+    <script src="]] print(ntop.getHttpPrefix()) print[[/js/sankey.js"></script>
 
-<script>
+    <script>
 ]]
+
 -- Create javascript vlan boolean variable
 if (_ifstats.iface_vlan) then print("var iface_vlan = true;") else print("var iface_vlan = false;") end
-
 print [[
+    function sankey() {
+    var w = $("#chart").width();
+    var h = window.innerHeight / 2;
 
-function sankey() {
-
-  var w = $("#chart").width();
-  var h = window.innerHeight / 2;
-
-  var margin = {top: 1, right: 10, bottom: 1, left: 10},
+    var margin = {top: 1, right: 10, bottom: 1, left: 10},
       width = w - margin.left - margin.right,
       height = h - margin.top - margin.bottom;
 
-  var formatNumber = d3.format(",.0f"),
+    var formatNumber = d3.format(",.0f"),
     format = function(sent, rcvd) { return "[sent: " + bytesToVolume(sent) + ", rcvd: " + bytesToVolume(rcvd)+"]"; },
     color = d3.scale.category20();
-
 ]]
+
 -- Default value
 active_sankey = "host"
 local debug = false
@@ -79,6 +77,8 @@ end
 
 if (debug) then io.write("Active sankey: "..active_sankey.."\n") end
 
+--The alert placeholder always gives a warning on the first instance of the page
+--need to find a way for it to refresh and remove alert without user doing so
 print [[
     , function(hosts) {
 
@@ -86,7 +86,8 @@ print [[
       $('#alert_placeholder').html('<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert">x</button><strong>Warning: </strong>There are no talkers for the current host.</div>');
       return;
     }
-  d3.select("#chart").select("svg").remove();
+ 
+ d3.select("#chart").select("svg").remove();
 
   var svg_sankey = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -107,11 +108,8 @@ print [[
 
 ]]
 
-
 if (active_sankey == "host") then
-
 print [[
-
   /* Color the link according to traffic prevalence */
   var colorlink = function(d){
     if (d.sent > d.rcvd) return color(d.source.name);
