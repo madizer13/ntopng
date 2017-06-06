@@ -19,7 +19,7 @@ end
 
 print [[
       <div class="masthead">
-        <ul class="nav nav-pills pull-right">
+      <ul class="nav nav-pills pull-right">
    ]]
 
 
@@ -27,7 +27,8 @@ interface.select(ifname)
 local ifs = interface.getStats()
 ifId = ifs.id
 
--- ##############################################
+-- ###################################################
+-- Links in the below code must be updated to the current git repo if forking 
 
 if active_page == "home" or active_page == "about" then
   print [[ <li class="dropdown active"> ]]
@@ -73,7 +74,7 @@ else
 
 print(ntop.getHttpPrefix())
 if ntop.isPro() then
-   print("/lua/pro/dashboard.lua")
+   print("/lua/pro/dashboard.lua") --Pro edition feature
 else
    print("/lua/index.lua") -- index.lua has been edited to have all the summary content (i.e. Top Scripts)
 end
@@ -239,7 +240,8 @@ print [[/lua/hosts_matrix.lua"><i class="fa fa-th-large"></i> Local Flow Matrix<
 
 print("</ul> </li>")
 
--- Devices
+--##########################################################################
+-- Devices Page
 info = ntop.getInfo()
 
 if((ifs["has_macs"] == true) or ntop.isPro()) then
@@ -274,8 +276,8 @@ end
 print("</ul> </li>")
 end
 
-
--- Interfaces
+--###################################################################
+-- Interfaces Page
 if(num_ifaces > 0) then
 if active_page == "if_stats" then
   print [[ <li class="dropdown active"> ]]
@@ -347,8 +349,8 @@ print [[
 end
 
 
-
--- Admin
+--#####################################################################
+-- Admin Page
 if active_page == "admin" then
   print [[ <li class="dropdown active"> ]]
 else
