@@ -8,7 +8,9 @@ print [[
       <div id="footer"> <hr>
    ]]
 
-ntop_version_check()
+--this brings up an alert to download newest version
+--we have currently commented it out until we update the method to reflect our github repo
+--ntop_version_check() 
 
 info = ntop.getInfo(true)
 
