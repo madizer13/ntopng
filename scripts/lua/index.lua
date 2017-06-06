@@ -7,7 +7,6 @@ package.path = dirs.installdir .. "/scripts/lua/modules/?.lua;" .. package.path
 -- io.write ("Session:".._SESSION["session"].."\n")
 require "lua_utils"
 
-
 interface.select(ifname)
 
 if(ntop.isPro()) then
@@ -31,11 +30,9 @@ ntop.dumpFile(dirs.installdir .. "/httpdocs/inc/header.inc")
 active_page = "home"
 dofile(dirs.installdir .. "/scripts/lua/inc/menu.lua")
 
-
 ifstats = interface.getStats()
 is_loopback = isLoopback(ifname)
 iface_id = interface.name2id(ifname)
-
 
 -- Load from or set in redis the refresh frequency for the top flow sankey
 
@@ -56,7 +53,7 @@ if(page == nil) then
    if(not(is_loopback)) then
       page = "TopFlowTalkers"
    else
-      page = "TopHosts"
+      page = "TopFlowTalkers"
    end
 end
 
