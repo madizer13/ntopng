@@ -69,28 +69,28 @@ public class Launcher {
 		frmNtopngGraphicalLauncher.getContentPane().setLayout(null);
 		
 		final JRadioButton rdbtnAnalyseNetworkInterface = new JRadioButton("Analyse Network Interface");
-		rdbtnAnalyseNetworkInterface.setBounds(10, 7, 200, 23);
+		rdbtnAnalyseNetworkInterface.setBounds(38, 16, 200, 23);
 		buttonGroupInterface.add(rdbtnAnalyseNetworkInterface);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnAnalyseNetworkInterface);
 		
 		final JComboBox<String> interfaceBox = new JComboBox<String>();
-		interfaceBox.setBounds(183, 8, 140, 20);
+		interfaceBox.setBounds(265, 17, 140, 20);
 		interfaceBox.addItem("ALL (DEFAULT)");
 		interfaceBox.setMaximumRowCount(50);
 		frmNtopngGraphicalLauncher.getContentPane().add(interfaceBox);
 		
 		JLabel lblOr = new JLabel("OR");
-		lblOr.setBounds(350, 9, 46, 14);
+		lblOr.setBounds(6, 33, 34, 14);
 		lblOr.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNtopngGraphicalLauncher.getContentPane().add(lblOr);
 		
 		final JRadioButton rdbtnAnalysePCAP = new JRadioButton("Analyse already captured PCAP");
-		rdbtnAnalysePCAP.setBounds(402, 7, 223, 23);
+		rdbtnAnalysePCAP.setBounds(38, 48, 223, 23);
 		buttonGroupInterface.add(rdbtnAnalysePCAP);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnAnalysePCAP);
 		
 		JButton btnBrowsePcap = new JButton("Browse PCAP");
-		btnBrowsePcap.setBounds(626, 7, 143, 23);
+		btnBrowsePcap.setBounds(265, 48, 140, 23);
 		btnBrowsePcap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser pcapDirectory = new JFileChooser();
@@ -104,16 +104,16 @@ public class Launcher {
 		frmNtopngGraphicalLauncher.getContentPane().add(btnBrowsePcap);
 
 		JLabel lblDnsMode = new JLabel("DNS Mode");
-		lblDnsMode.setBounds(10, 42, 69, 14);
+		lblDnsMode.setBounds(10, 83, 69, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblDnsMode);
 
 		String[] DNS = {"0","1","2","3"};		
 		final JComboBox dnsBox = new JComboBox(DNS);
-		dnsBox.setBounds(89, 39, 112, 20);
+		dnsBox.setBounds(89, 80, 112, 20);
 		dnsBox.setMaximumRowCount(4);
 		frmNtopngGraphicalLauncher.getContentPane().add(dnsBox);
 		JLabel lbldecodeDnsResolve = new JLabel("0-Decode DNS Resolve Local IP    1-Decode DNS Resolve All IP     2-Decode DNS Only    3-Don't Decode or Resolve");
-		lbldecodeDnsResolve.setBounds(211, 42, 563, 14);
+		lbldecodeDnsResolve.setBounds(211, 83, 563, 14);
 		lbldecodeDnsResolve.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		frmNtopngGraphicalLauncher.getContentPane().add(lbldecodeDnsResolve);
 		try {
@@ -128,58 +128,58 @@ public class Launcher {
         }
 
 		JLabel lblPromiscuisMode = new JLabel("Promiscuous Mode");
-		lblPromiscuisMode.setBounds(10, 70, 121, 14);
+		lblPromiscuisMode.setBounds(10, 109, 121, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblPromiscuisMode);
 
 		JRadioButton rdbtnPMYes = new JRadioButton("Yes");
-		rdbtnPMYes.setBounds(137, 66, 64, 23);
+		rdbtnPMYes.setBounds(137, 105, 64, 23);
 		rdbtnPMYes.setSelected(true);
 		buttonGroupPromiscuousMode.add(rdbtnPMYes);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnPMYes);
 
 		final JRadioButton rdbtnPMNo = new JRadioButton("No");
-		rdbtnPMNo.setBounds(210, 66, 49, 23);
+		rdbtnPMNo.setBounds(210, 105, 49, 23);
 		buttonGroupPromiscuousMode.add(rdbtnPMNo);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnPMNo);
 
 		JLabel lblListenIP = new JLabel("Listen for Specific IP");
-		lblListenIP.setBounds(10, 98, 133, 14);
+		lblListenIP.setBounds(10, 137, 133, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblListenIP);
 
 		final JTextField txtListenIP = new JTextField();
-		txtListenIP.setBounds(136, 95, 129, 20);
+		txtListenIP.setBounds(136, 134, 129, 20);
 		frmNtopngGraphicalLauncher.getContentPane().add(txtListenIP);
 		txtListenIP.setColumns(10);
 
 		JLabel lblListenPort = new JLabel("Listen on Specific Port");
-		lblListenPort.setBounds(314, 98, 137, 14);
+		lblListenPort.setBounds(314, 137, 137, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblListenPort);
 
 		txtListenOnPort = new JTextField();
-		txtListenOnPort.setBounds(461, 95, 86, 20);
+		txtListenOnPort.setBounds(461, 134, 86, 20);
 		frmNtopngGraphicalLauncher.getContentPane().add(txtListenOnPort);
 		txtListenOnPort.setColumns(10);
 
 		JLabel lblLocalNetworkLists = new JLabel("Local Network Lists");
-		lblLocalNetworkLists.setBounds(10, 133, 133, 14);
+		lblLocalNetworkLists.setBounds(10, 172, 133, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblLocalNetworkLists);
 
 		txtLocalNetworkList = new JTextField();
-		txtLocalNetworkList.setBounds(137, 130, 479, 20);
+		txtLocalNetworkList.setBounds(137, 169, 479, 20);
 		frmNtopngGraphicalLauncher.getContentPane().add(txtLocalNetworkList);
 		txtLocalNetworkList.setColumns(10);
 		
 		JLabel lblseperateIpsWith = new JLabel("(Seperate IPs with a Comma)");
-		lblseperateIpsWith.setBounds(626, 133, 148, 14);
+		lblseperateIpsWith.setBounds(626, 172, 148, 14);
 		lblseperateIpsWith.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		frmNtopngGraphicalLauncher.getContentPane().add(lblseperateIpsWith);
 
 		JLabel lblSpecifyNdpiProtocols = new JLabel("Specify NDPI Protocol");
-		lblSpecifyNdpiProtocols.setBounds(10, 169, 151, 14);
+		lblSpecifyNdpiProtocols.setBounds(10, 208, 151, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblSpecifyNdpiProtocols);
 
 		JButton btnNdpiBrowse = new JButton("Browse");
-		btnNdpiBrowse.setBounds(153, 165, 89, 23);
+		btnNdpiBrowse.setBounds(153, 204, 89, 23);
 		btnNdpiBrowse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser dpiProtocol = new JFileChooser();
@@ -193,110 +193,110 @@ public class Launcher {
 		frmNtopngGraphicalLauncher.getContentPane().add(btnNdpiBrowse);
 
 		JLabel lblDisableLoginFor = new JLabel("Disable Login For:");
-		lblDisableLoginFor.setBounds(10, 199, 121, 14);
+		lblDisableLoginFor.setBounds(10, 238, 121, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblDisableLoginFor);
 
 		JCheckBox chckbxLocalHost = new JCheckBox("Local Host");
-		chckbxLocalHost.setBounds(125, 195, 101, 23);
+		chckbxLocalHost.setBounds(125, 234, 101, 23);
 		frmNtopngGraphicalLauncher.getContentPane().add(chckbxLocalHost);
 
 		JCheckBox chckbxAllHosts = new JCheckBox("All Hosts");
-		chckbxAllHosts.setBounds(241, 195, 97, 23);
+		chckbxAllHosts.setBounds(241, 234, 97, 23);
 		frmNtopngGraphicalLauncher.getContentPane().add(chckbxAllHosts);
 
 		JLabel lblMemoryManagement = new JLabel("Memory Management:");
-		lblMemoryManagement.setBounds(10, 227, 133, 14);
+		lblMemoryManagement.setBounds(10, 266, 133, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblMemoryManagement);
 
 		JLabel lblMaxFlows = new JLabel("Maximum Number of Flows");
-		lblMaxFlows.setBounds(155, 228, 164, 14);
+		lblMaxFlows.setBounds(155, 267, 164, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblMaxFlows);
 
 		txtMaxFlows = new JTextField();
-		txtMaxFlows.setBounds(323, 224, 112, 20);
+		txtMaxFlows.setBounds(323, 263, 112, 20);
 		frmNtopngGraphicalLauncher.getContentPane().add(txtMaxFlows);
 		txtMaxFlows.setColumns(10);
 
 		JLabel lblMaxHosts = new JLabel("Maximum Number of Hosts");
-		lblMaxHosts.setBounds(445, 227, 155, 14);
+		lblMaxHosts.setBounds(445, 266, 155, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblMaxHosts);
 
 		txtMaxHosts = new JTextField();
-		txtMaxHosts.setBounds(610, 224, 112, 20);
+		txtMaxHosts.setBounds(610, 263, 112, 20);
 		frmNtopngGraphicalLauncher.getContentPane().add(txtMaxHosts);
 		txtMaxHosts.setColumns(10);
 
 		JLabel lblDumpHosts = new JLabel("Dump Hosts ");
-		lblDumpHosts.setBounds(10, 252, 79, 14);
+		lblDumpHosts.setBounds(10, 291, 79, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblDumpHosts);
 
 		JRadioButton rdbtnAll = new JRadioButton("All");
-		rdbtnAll.setBounds(89, 248, 54, 23);
+		rdbtnAll.setBounds(89, 287, 54, 23);
 		buttonGroupDumpHosts.add(rdbtnAll);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnAll);
 
 		JRadioButton rdbtnLocal = new JRadioButton("Local");
-		rdbtnLocal.setBounds(153, 249, 63, 23);
+		rdbtnLocal.setBounds(153, 288, 63, 23);
 		buttonGroupDumpHosts.add(rdbtnLocal);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnLocal);
 
 		JRadioButton rdbtnRemote = new JRadioButton("Remote");
-		rdbtnRemote.setBounds(228, 249, 79, 23);
+		rdbtnRemote.setBounds(228, 288, 79, 23);
 		buttonGroupDumpHosts.add(rdbtnRemote);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnRemote);
 
 		JRadioButton rdbtnNone = new JRadioButton("None");
-		rdbtnNone.setBounds(310, 249, 79, 23);
+		rdbtnNone.setBounds(310, 288, 79, 23);
 		buttonGroupDumpHosts.add(rdbtnNone);
 		rdbtnNone.setSelected(true);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnNone);
 
 		JLabel lblCaptureDirection = new JLabel("Capture Direction");
-		lblCaptureDirection.setBounds(10, 277, 121, 14);
+		lblCaptureDirection.setBounds(10, 316, 121, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblCaptureDirection);
 
 		JRadioButton rdbtnBoth = new JRadioButton("Both");
-		rdbtnBoth.setBounds(127, 273, 74, 23);
+		rdbtnBoth.setBounds(127, 312, 74, 23);
 		buttonGroupCaptureDirection.add(rdbtnBoth);
 		rdbtnBoth.setSelected(true);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnBoth);
 
 		final JRadioButton rdbtnReceiveOnly = new JRadioButton("Receive Only");
-		rdbtnReceiveOnly.setBounds(201, 273, 106, 23);
+		rdbtnReceiveOnly.setBounds(201, 312, 106, 23);
 		buttonGroupCaptureDirection.add(rdbtnReceiveOnly);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnReceiveOnly);
 
 		final JRadioButton rdbtnTransmitOnly = new JRadioButton("Transmit Only");
-		rdbtnTransmitOnly.setBounds(308, 273, 127, 23);
+		rdbtnTransmitOnly.setBounds(308, 312, 127, 23);
 		buttonGroupCaptureDirection.add(rdbtnTransmitOnly);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnTransmitOnly);
 
 		JLabel lblTaps = new JLabel("Enable Taps");
-		lblTaps.setBounds(10, 302, 79, 14);
+		lblTaps.setBounds(10, 341, 79, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblTaps);
 
 		final JRadioButton rdbtnTapsYes = new JRadioButton("Yes");
-		rdbtnTapsYes.setBounds(92, 298, 69, 23);
+		rdbtnTapsYes.setBounds(92, 337, 69, 23);
 		buttonGroupTaps.add(rdbtnTapsYes);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnTapsYes);
 
 		JRadioButton rdbtnTapsNo = new JRadioButton("No");
-		rdbtnTapsNo.setBounds(160, 298, 56, 23);
+		rdbtnTapsNo.setBounds(160, 337, 56, 23);
 		rdbtnTapsNo.setSelected(true);
 		buttonGroupTaps.add(rdbtnTapsNo);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnTapsNo);
 
 		JLabel lblFlowActivity = new JLabel("Enable Flow Activity");
-		lblFlowActivity.setBounds(10, 330, 121, 14);
+		lblFlowActivity.setBounds(10, 369, 121, 14);
 		frmNtopngGraphicalLauncher.getContentPane().add(lblFlowActivity);
 
 		final JRadioButton rdbtnFlowActivityYes = new JRadioButton("Yes");
-		rdbtnFlowActivityYes.setBounds(127, 326, 53, 23);
+		rdbtnFlowActivityYes.setBounds(127, 365, 53, 23);
 		buttonGroupFlowActivity.add(rdbtnFlowActivityYes);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnFlowActivityYes);
 
 		JRadioButton rdbtnFlowActivityNo = new JRadioButton("No");
-		rdbtnFlowActivityNo.setBounds(183, 326, 59, 23);
+		rdbtnFlowActivityNo.setBounds(183, 365, 59, 23);
 		rdbtnFlowActivityNo.setSelected(true);
 		buttonGroupFlowActivity.add(rdbtnFlowActivityNo);
 		frmNtopngGraphicalLauncher.getContentPane().add(rdbtnFlowActivityNo);
@@ -347,7 +347,12 @@ public class Launcher {
 		btnNewButton.setFont(new Font("Tahoma", Font.ITALIC, 18));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				stopNTOP();
+				try {
+					stopNTOP();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(442, 399, 201, 31);
